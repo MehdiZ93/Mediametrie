@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Mediametrie
 {
-    public partial class Form1 : Form
+    public partial class add_task : Form
     {
-        public Form1()
+        public add_task()
         {
             InitializeComponent();
         }

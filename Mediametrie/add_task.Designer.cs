@@ -1,6 +1,6 @@
 ﻿namespace Mediametrie
 {
-    partial class Form1
+    partial class add_task
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // add_task
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(678, 644);
+            this.Name = "add_task";
+            this.Text = "Ajout d\'une tâche";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-
