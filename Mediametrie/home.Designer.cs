@@ -77,17 +77,17 @@
             "Liste 4"});
             this.listBox1.Location = new System.Drawing.Point(12, 23);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(206, 625);
+            this.listBox1.Size = new System.Drawing.Size(206, 475);
             this.listBox1.TabIndex = 5;
             this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(224, 617);
+            this.textBox2.Location = new System.Drawing.Point(224, 422);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(642, 152);
+            this.textBox2.Size = new System.Drawing.Size(642, 158);
             this.textBox2.TabIndex = 6;
             // 
             // checkedListBox1
@@ -101,14 +101,14 @@
             "Tâche 4"});
             this.checkedListBox1.Location = new System.Drawing.Point(224, 82);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(642, 529);
+            this.checkedListBox1.Size = new System.Drawing.Size(642, 329);
             this.checkedListBox1.TabIndex = 7;
             this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             this.checkedListBox1.Click += new System.EventHandler(this.checkedListBox1_Click);
             // 
             // btn_add_task
             // 
-            this.btn_add_task.Location = new System.Drawing.Point(291, 791);
+            this.btn_add_task.Location = new System.Drawing.Point(292, 587);
             this.btn_add_task.Name = "btn_add_task";
             this.btn_add_task.Size = new System.Drawing.Size(166, 36);
             this.btn_add_task.TabIndex = 8;
@@ -119,7 +119,7 @@
             // btn_modify_task
             // 
             this.btn_modify_task.Enabled = false;
-            this.btn_modify_task.Location = new System.Drawing.Point(463, 791);
+            this.btn_modify_task.Location = new System.Drawing.Point(464, 587);
             this.btn_modify_task.Name = "btn_modify_task";
             this.btn_modify_task.Size = new System.Drawing.Size(166, 36);
             this.btn_modify_task.TabIndex = 9;
@@ -129,7 +129,7 @@
             // btn_del_task
             // 
             this.btn_del_task.Enabled = false;
-            this.btn_del_task.Location = new System.Drawing.Point(635, 791);
+            this.btn_del_task.Location = new System.Drawing.Point(636, 587);
             this.btn_del_task.Name = "btn_del_task";
             this.btn_del_task.Size = new System.Drawing.Size(166, 36);
             this.btn_del_task.TabIndex = 10;
@@ -140,7 +140,7 @@
             // btn_del_cont
             // 
             this.btn_del_cont.Enabled = false;
-            this.btn_del_cont.Location = new System.Drawing.Point(22, 781);
+            this.btn_del_cont.Location = new System.Drawing.Point(22, 586);
             this.btn_del_cont.Name = "btn_del_cont";
             this.btn_del_cont.Size = new System.Drawing.Size(185, 36);
             this.btn_del_cont.TabIndex = 11;
@@ -151,7 +151,7 @@
             // btn_modify_cont
             // 
             this.btn_modify_cont.Enabled = false;
-            this.btn_modify_cont.Location = new System.Drawing.Point(22, 739);
+            this.btn_modify_cont.Location = new System.Drawing.Point(22, 544);
             this.btn_modify_cont.Name = "btn_modify_cont";
             this.btn_modify_cont.Size = new System.Drawing.Size(185, 36);
             this.btn_modify_cont.TabIndex = 12;
@@ -160,7 +160,7 @@
             // 
             // btn_add_cont
             // 
-            this.btn_add_cont.Location = new System.Drawing.Point(22, 697);
+            this.btn_add_cont.Location = new System.Drawing.Point(22, 502);
             this.btn_add_cont.Name = "btn_add_cont";
             this.btn_add_cont.Size = new System.Drawing.Size(185, 36);
             this.btn_add_cont.TabIndex = 13;
@@ -173,7 +173,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Enabled = false;
             this.textBox3.ForeColor = System.Drawing.Color.White;
-            this.textBox3.Location = new System.Drawing.Point(12, 617);
+            this.textBox3.Location = new System.Drawing.Point(12, 422);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -185,7 +185,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(878, 844);
+            this.ClientSize = new System.Drawing.Size(878, 644);
             this.Controls.Add(this.btn_add_cont);
             this.Controls.Add(this.btn_modify_cont);
             this.Controls.Add(this.btn_del_cont);
@@ -200,8 +200,8 @@
             this.Controls.Add(this.textBox3);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(900, 900);
-            this.MinimumSize = new System.Drawing.Size(900, 900);
+            this.MaximumSize = new System.Drawing.Size(900, 700);
+            this.MinimumSize = new System.Drawing.Size(900, 700);
             this.Name = "home";
             this.Text = "Gestionnaire de tâches";
             this.ResumeLayout(false);
