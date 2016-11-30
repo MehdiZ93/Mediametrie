@@ -103,6 +103,7 @@
             // 
             // end_date
             // 
+            this.end_date.CustomFormat = "";
             this.end_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.end_date.Location = new System.Drawing.Point(367, 60);
             this.end_date.Name = "end_date";

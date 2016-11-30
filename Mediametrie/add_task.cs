@@ -21,7 +21,7 @@ namespace Mediametrie
         {
             string descript = description.Text;
             string titre = title.Text;
-            DateTime date = end_date.Value;
+            DateTime date_fin = end_date.Value;
             int prio = 0;
             if (radio_prio1.Checked)
                 prio = Int32.Parse(radio_prio1.Text);
@@ -33,6 +33,7 @@ namespace Mediametrie
                 prio = Int32.Parse(radio_prio4.Text);
             else if (radio_prio5.Checked)
                 prio = Int32.Parse(radio_prio5.Text);
+            MessageBox.Show(date_fin.ToString());
         }
 
         private void button2_Click(object sender, EventArgs e)

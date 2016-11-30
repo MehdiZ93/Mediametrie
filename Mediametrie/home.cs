@@ -20,20 +20,20 @@ namespace Mediametrie
 
         private void listBox1_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex != -1)
+            if (aff_listes.SelectedIndex != -1)
             {
                 btn_modify_cont.Enabled = true;
                 btn_del_cont.Enabled = true;
-                head_tasks_rem.Text = listBox1.SelectedItem.ToString();
-                int size_list = checkedListBox1.Items.Count;
-                int nbr_checked_list = checkedListBox1.CheckedItems.Count;
+                head_tasks_rem.Text = aff_listes.SelectedItem.ToString();
+                int size_list = aff_taches.Items.Count;
+                int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + " / " + size_list;
             }
         }
 
         private void checkedListBox1_Click(object sender, EventArgs e)
         {
-            if (checkedListBox1.SelectedIndex != -1)
+            if (aff_taches.SelectedIndex != -1)
             {
                 btn_modify_task.Enabled = true;
                 btn_del_task.Enabled = true;
@@ -49,17 +49,17 @@ namespace Mediametrie
         private void btn_del_task_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show(
-                "Voulez-vous vraiment supprimer : \"" + checkedListBox1.SelectedItem.ToString() + "\" ?",
+                "Voulez-vous vraiment supprimer : \"" + aff_taches.SelectedItem.ToString() + "\" ?",
                 "Suppression",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
-                checkedListBox1.Items.Remove(checkedListBox1.SelectedItem);
+                aff_taches.Items.Remove(aff_taches.SelectedItem);
                 btn_modify_task.Enabled = false;
                 btn_del_task.Enabled = false;
-                int size_list = checkedListBox1.Items.Count;
-                int nbr_checked_list = checkedListBox1.CheckedItems.Count;
+                int size_list = aff_taches.Items.Count;
+                int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + " / " + size_list;
             }
         }
@@ -67,13 +67,13 @@ namespace Mediametrie
         private void btn_del_cont_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show(
-                "Voulez-vous vraiment supprimer : \"" + listBox1.SelectedItem.ToString() + "\" ?",
+                "Voulez-vous vraiment supprimer : \"" + aff_listes.SelectedItem.ToString() + "\" ?",
                 "Suppression",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
-                listBox1.Items.Remove(listBox1.SelectedItem);
+                aff_listes.Items.Remove(aff_listes.SelectedItem);
                 btn_modify_cont.Enabled = false;
                 btn_del_cont.Enabled = false;
             }
@@ -81,18 +81,23 @@ namespace Mediametrie
 
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (checkedListBox1.GetItemCheckState(checkedListBox1.SelectedIndex) == CheckState.Checked)
+            if (aff_taches.GetItemCheckState(aff_taches.SelectedIndex) == CheckState.Checked)
             {
-                int size_list = checkedListBox1.Items.Count;
-                int nbr_checked_list = checkedListBox1.CheckedItems.Count;
+                int size_list = aff_taches.Items.Count;
+                int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list - 1 + " / " + size_list;
             }
             else
             {
-                int size_list = checkedListBox1.Items.Count;
-                int nbr_checked_list = checkedListBox1.CheckedItems.Count;
+                int size_list = aff_taches.Items.Count;
+                int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + 1 + " / " + size_list;
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

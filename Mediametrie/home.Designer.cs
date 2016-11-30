@@ -30,9 +30,9 @@
         {
             this.head_tasks_rem = new System.Windows.Forms.TextBox();
             this.nb_elem = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.aff_listes = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.aff_taches = new System.Windows.Forms.CheckedListBox();
             this.btn_add_task = new System.Windows.Forms.Button();
             this.btn_modify_task = new System.Windows.Forms.Button();
             this.btn_del_task = new System.Windows.Forms.Button();
@@ -65,22 +65,18 @@
             this.nb_elem.Size = new System.Drawing.Size(101, 53);
             this.nb_elem.TabIndex = 4;
             // 
-            // listBox1
+            // aff_listes
             // 
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
-            this.listBox1.Items.AddRange(new object[] {
-            "Liste 1",
-            "Liste 2",
-            "Liste 3",
-            "Liste 4"});
-            this.listBox1.Location = new System.Drawing.Point(12, 23);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(206, 475);
-            this.listBox1.TabIndex = 5;
-            this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
+            this.aff_listes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.aff_listes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aff_listes.FormattingEnabled = true;
+            this.aff_listes.ItemHeight = 25;
+            this.aff_listes.Location = new System.Drawing.Point(12, 23);
+            this.aff_listes.Name = "aff_listes";
+            this.aff_listes.Size = new System.Drawing.Size(206, 475);
+            this.aff_listes.TabIndex = 5;
+            this.aff_listes.Click += new System.EventHandler(this.listBox1_Click);
+            this.aff_listes.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // textBox2
             // 
@@ -94,21 +90,16 @@
             this.textBox2.Size = new System.Drawing.Size(642, 158);
             this.textBox2.TabIndex = 6;
             // 
-            // checkedListBox1
+            // aff_taches
             // 
-            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Tâche 1",
-            "Tâche 2",
-            "Tâche 3",
-            "Tâche 4"});
-            this.checkedListBox1.Location = new System.Drawing.Point(224, 82);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(642, 329);
-            this.checkedListBox1.TabIndex = 7;
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
-            this.checkedListBox1.Click += new System.EventHandler(this.checkedListBox1_Click);
+            this.aff_taches.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aff_taches.FormattingEnabled = true;
+            this.aff_taches.Location = new System.Drawing.Point(224, 82);
+            this.aff_taches.Name = "aff_taches";
+            this.aff_taches.Size = new System.Drawing.Size(642, 329);
+            this.aff_taches.TabIndex = 7;
+            this.aff_taches.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
+            this.aff_taches.Click += new System.EventHandler(this.checkedListBox1_Click);
             // 
             // btn_add_task
             // 
@@ -196,8 +187,8 @@
             this.Controls.Add(this.btn_del_task);
             this.Controls.Add(this.btn_modify_task);
             this.Controls.Add(this.btn_add_task);
-            this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.aff_taches);
+            this.Controls.Add(this.aff_listes);
             this.Controls.Add(this.head_tasks_rem);
             this.Controls.Add(this.nb_elem);
             this.Controls.Add(this.textBox2);
@@ -216,9 +207,9 @@
         #endregion
         private System.Windows.Forms.TextBox head_tasks_rem;
         private System.Windows.Forms.TextBox nb_elem;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox aff_listes;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox aff_taches;
         private System.Windows.Forms.Button btn_add_task;
         private System.Windows.Forms.Button btn_modify_task;
         private System.Windows.Forms.Button btn_del_task;
