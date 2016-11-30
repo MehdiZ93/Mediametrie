@@ -14,24 +14,31 @@ namespace Mediametrie
         [STAThread]
         static void Main()
         {
-            System.Data.SqlClient.SqlConnection conn =
-            new System.Data.SqlClient.SqlConnection();
-            // TODO: Modify the connection string and include any
-            // additional required properties for your database.
-            conn.ConnectionString =
-             "Data Source=ROG;Initial Catalog=Gestionnaire;Integrated Security=True";
-            try
+            using (var entities = new GestionnaireEntities())
             {
-                conn.Open();
-                // Insert code to process data.
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to connect to data source");
-            }
-            finally
-            {
-                conn.Close();
+
+                var tacheAjouter = new Container()
+                {
+                    nom = "Test",
+                    etat = false
+                };
+                entities.Containers.Add(tacheAjouter);
+                entities.SaveChanges();
+                Console.WriteLine("Ajout");
+                foreach (var cont in entities.Containers)
+                {
+                    Console.WriteLine("nom : " + cont.nom);
+                }
+                foreach (var cont in entities.Containers)
+                {
+                    cont.nom = "Ntm";
+                }
+                entities.SaveChanges();
+                Console.WriteLine("Suppression");
+                foreach (var cont in entities.Containers)
+                {
+                    Console.WriteLine("nom : " + cont.nom);
+                }
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

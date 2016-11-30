@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestionnaireModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Container">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="etat" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tache">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="date_creation" Type="date" Nullable="false" />
+          <Property Name="date_fin" Type="date" Nullable="false" />
+          <Property Name="etat" Type="bit" Nullable="false" />
+          <Property Name="priorite" Type="tinyint" Nullable="false" />
+          <Property Name="id_container" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tache_Container">
+          <End Role="Container" Type="Self.Container" Multiplicity="1" />
+          <End Role="Tache" Type="Self.Tache" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Container">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tache">
+              <PropertyRef Name="id_container" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionnaireModelStoreContainer">
+          <EntitySet Name="Container" EntityType="Self.Container" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tache" EntityType="Self.Tache" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tache_Container" Association="Self.FK_Tache_Container">
+            <End Role="Container" EntitySet="Container" />
+            <End Role="Tache" EntitySet="Tache" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionnaireModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Container">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="etat" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Taches" Relationship="Self.FK_Tache_Container" FromRole="Container" ToRole="Tache" />
+        </EntityType>
+        <EntityType Name="Tache">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_creation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="date_fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="etat" Type="Boolean" Nullable="false" />
+          <Property Name="priorite" Type="Byte" Nullable="false" />
+          <Property Name="id_container" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Container" Relationship="Self.FK_Tache_Container" FromRole="Tache" ToRole="Container" />
+        </EntityType>
+        <Association Name="FK_Tache_Container">
+          <End Role="Container" Type="Self.Container" Multiplicity="1" />
+          <End Role="Tache" Type="Self.Tache" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Container">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tache">
+              <PropertyRef Name="id_container" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionnaireEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Containers" EntityType="Self.Container" />
+          <EntitySet Name="Taches" EntityType="Self.Tache" />
+          <AssociationSet Name="FK_Tache_Container" Association="Self.FK_Tache_Container">
+            <End Role="Container" EntitySet="Containers" />
+            <End Role="Tache" EntitySet="Taches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionnaireModelStoreContainer" CdmEntityContainer="GestionnaireEntities">
+          <EntitySetMapping Name="Containers">
+            <EntityTypeMapping TypeName="GestionnaireModel.Container">
+              <MappingFragment StoreEntitySet="Container">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="etat" ColumnName="etat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taches">
+            <EntityTypeMapping TypeName="GestionnaireModel.Tache">
+              <MappingFragment StoreEntitySet="Tache">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="date_creation" ColumnName="date_creation" />
+                <ScalarProperty Name="date_fin" ColumnName="date_fin" />
+                <ScalarProperty Name="etat" ColumnName="etat" />
+                <ScalarProperty Name="priorite" ColumnName="priorite" />
+                <ScalarProperty Name="id_container" ColumnName="id_container" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
