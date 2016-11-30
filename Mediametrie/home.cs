@@ -81,9 +81,18 @@ namespace Mediametrie
 
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            int size_list = checkedListBox1.Items.Count;
-            int nbr_checked_list = checkedListBox1.CheckedItems.Count;
-            nb_elem.Text = nbr_checked_list + 1 + " / " + size_list;
+            if (checkedListBox1.GetItemCheckState(checkedListBox1.SelectedIndex) == CheckState.Checked)
+            {
+                int size_list = checkedListBox1.Items.Count;
+                int nbr_checked_list = checkedListBox1.CheckedItems.Count;
+                nb_elem.Text = nbr_checked_list - 1 + " / " + size_list;
+            }
+            else
+            {
+                int size_list = checkedListBox1.Items.Count;
+                int nbr_checked_list = checkedListBox1.CheckedItems.Count;
+                nb_elem.Text = nbr_checked_list + 1 + " / " + size_list;
+            }
         }
     }
 }
