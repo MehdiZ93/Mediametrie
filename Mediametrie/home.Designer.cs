@@ -47,6 +47,7 @@
             this.head_tasks_rem.BackColor = System.Drawing.SystemColors.Window;
             this.head_tasks_rem.Enabled = false;
             this.head_tasks_rem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.head_tasks_rem.ForeColor = System.Drawing.Color.Black;
             this.head_tasks_rem.Location = new System.Drawing.Point(224, 23);
             this.head_tasks_rem.Name = "head_tasks_rem";
             this.head_tasks_rem.ReadOnly = true;
@@ -83,10 +84,13 @@
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(224, 422);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(642, 158);
             this.textBox2.TabIndex = 6;
             // 

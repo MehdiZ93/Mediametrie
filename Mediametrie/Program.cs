@@ -14,9 +14,8 @@ namespace Mediametrie
         [STAThread]
         static void Main()
         {
-            using (var entities = new GestionnaireEntities())
+            /*using (var entities = new GestionnaireEntities())
             {
-
                 var tacheAjouter = new Container()
                 {
                     nom = "Test",
@@ -39,7 +38,7 @@ namespace Mediametrie
                 {
                     Console.WriteLine("nom : " + cont.nom);
                 }
-            }
+            }*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new home());
