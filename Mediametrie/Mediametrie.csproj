@@ -74,6 +74,11 @@
     <Compile Include="add_task.Designer.cs">
       <DependentUpon>add_task.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model1.Context.cs" />
+    <Compile Include="Model1.cs" />
+    <Compile Include="Model1.Designer.cs">
+      <DependentUpon>Model1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="home.resx">
