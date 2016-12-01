@@ -15,7 +15,6 @@ namespace Mediametrie
         public home()
         {
             InitializeComponent();
-
         }
 
         private void listBox1_Click(object sender, EventArgs e)
