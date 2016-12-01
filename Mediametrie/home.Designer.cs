@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.head_tasks_rem = new System.Windows.Forms.TextBox();
             this.nb_elem = new System.Windows.Forms.TextBox();
             this.aff_listes = new System.Windows.Forms.ListBox();
+            this.containerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.database1DataSet = new Mediametrie.Database1DataSet();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.aff_taches = new System.Windows.Forms.CheckedListBox();
             this.btn_add_task = new System.Windows.Forms.Button();
@@ -40,6 +43,10 @@
             this.btn_modify_cont = new System.Windows.Forms.Button();
             this.btn_add_cont = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.containerTableAdapter = new Mediametrie.Database1DataSetTableAdapters.ContainerTableAdapter();
+            this.tableAdapterManager = new Mediametrie.Database1DataSetTableAdapters.TableAdapterManager();
+            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // head_tasks_rem
@@ -68,6 +75,8 @@
             // aff_listes
             // 
             this.aff_listes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.aff_listes.DataSource = this.containerBindingSource;
+            this.aff_listes.DisplayMember = "nom";
             this.aff_listes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aff_listes.FormattingEnabled = true;
             this.aff_listes.ItemHeight = 25;
@@ -75,8 +84,18 @@
             this.aff_listes.Name = "aff_listes";
             this.aff_listes.Size = new System.Drawing.Size(206, 475);
             this.aff_listes.TabIndex = 5;
+            this.aff_listes.ValueMember = "Id";
             this.aff_listes.Click += new System.EventHandler(this.listBox1_Click);
-            this.aff_listes.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // containerBindingSource
+            // 
+            this.containerBindingSource.DataMember = "Container";
+            this.containerBindingSource.DataSource = this.database1DataSet;
+            // 
+            // database1DataSet
+            // 
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // textBox2
             // 
@@ -175,10 +194,22 @@
             this.textBox3.Size = new System.Drawing.Size(206, 210);
             this.textBox3.TabIndex = 14;
             // 
+            // containerTableAdapter
+            // 
+            this.containerTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ContainerTableAdapter = this.containerTableAdapter;
+            this.tableAdapterManager.TacheTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = Mediametrie.Database1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(878, 644);
             this.Controls.Add(this.btn_add_cont);
@@ -199,6 +230,9 @@
             this.MinimumSize = new System.Drawing.Size(900, 700);
             this.Name = "home";
             this.Text = "Gestionnaire de tâches";
+            this.Load += new System.EventHandler(this.home_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,6 +251,10 @@
         private System.Windows.Forms.Button btn_modify_cont;
         private System.Windows.Forms.Button btn_add_cont;
         private System.Windows.Forms.TextBox textBox3;
+        private Database1DataSet database1DataSet;
+        private System.Windows.Forms.BindingSource containerBindingSource;
+        private Database1DataSetTableAdapters.ContainerTableAdapter containerTableAdapter;
+        private Database1DataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }
 

@@ -15,6 +15,7 @@ namespace Mediametrie
         public home()
         {
             InitializeComponent();
+
         }
 
         private void listBox1_Click(object sender, EventArgs e)
@@ -94,8 +95,10 @@ namespace Mediametrie
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void home_Load(object sender, EventArgs e)
         {
+            // TODO: cette ligne de code charge les données dans la table 'database1DataSet.Container'. Vous pouvez la déplacer ou la supprimer selon les besoins.
+            this.containerTableAdapter.Fill(this.database1DataSet.Container);
 
         }
     }
