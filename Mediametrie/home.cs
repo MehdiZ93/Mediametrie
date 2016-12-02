@@ -139,11 +139,21 @@ namespace Mediametrie
                     list_cont.Items.Add(names.nom);
                 }
             }
+            head_tasks_rem.Text = "";
+            nb_elem.Text = "";
         }
 
         private void btn_add_cont_Click(object sender, EventArgs e)
         {
             add_cont form = new add_cont(this);
+            form.ShowDialog();
+        }
+
+        private void btn_modify_cont_Click(object sender, EventArgs e)
+        {
+            btn_modify_cont.Enabled = false;
+            btn_del_cont.Enabled = false;
+            modify_cont form = new modify_cont(this, list_cont.SelectedItem.ToString(), list_cont.SelectedIndex);
             form.ShowDialog();
         }
     }

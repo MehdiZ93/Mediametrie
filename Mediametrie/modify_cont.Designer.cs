@@ -60,6 +60,7 @@
             this.btn_reset_cont.TabIndex = 25;
             this.btn_reset_cont.Text = "Reset";
             this.btn_reset_cont.UseVisualStyleBackColor = true;
+            this.btn_reset_cont.Click += new System.EventHandler(this.btn_reset_cont_Click);
             // 
             // btn_val_cont
             // 
@@ -69,6 +70,7 @@
             this.btn_val_cont.TabIndex = 24;
             this.btn_val_cont.Text = "Valider";
             this.btn_val_cont.UseVisualStyleBackColor = true;
+            this.btn_val_cont.Click += new System.EventHandler(this.btn_val_cont_Click);
             // 
             // modify_cont
             // 
@@ -82,7 +84,7 @@
             this.MaximumSize = new System.Drawing.Size(397, 246);
             this.MinimumSize = new System.Drawing.Size(397, 246);
             this.Name = "modify_cont";
-            this.Text = "modify_cont";
+            this.Text = "Modification d\'un container";
             this.ResumeLayout(false);
             this.PerformLayout();
 

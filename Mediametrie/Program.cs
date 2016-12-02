@@ -14,9 +14,9 @@ namespace Mediametrie
         [STAThread]
         static void Main()
         {
-            /*Application.EnableVisualStyles();
+            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new home());*/
+            Application.Run(new home());
 
 
             //Creation d'une taches

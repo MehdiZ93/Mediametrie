@@ -165,6 +165,7 @@
             this.btn_modify_cont.TabIndex = 12;
             this.btn_modify_cont.Text = "Modifier container";
             this.btn_modify_cont.UseVisualStyleBackColor = true;
+            this.btn_modify_cont.Click += new System.EventHandler(this.btn_modify_cont_Click);
             // 
             // btn_add_cont
             // 
