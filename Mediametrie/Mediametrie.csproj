@@ -126,6 +126,12 @@
     <Compile Include="modify_cont.Designer.cs">
       <DependentUpon>modify_cont.cs</DependentUpon>
     </Compile>
+    <Compile Include="modify_task.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modify_task.Designer.cs">
+      <DependentUpon>modify_task.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="add_cont.resx">
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="modify_cont.resx">
       <DependentUpon>modify_cont.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modify_task.resx">
+      <DependentUpon>modify_task.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

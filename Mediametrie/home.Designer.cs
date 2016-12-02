@@ -134,6 +134,7 @@
             this.btn_modify_task.TabIndex = 9;
             this.btn_modify_task.Text = "Modifier tâche";
             this.btn_modify_task.UseVisualStyleBackColor = true;
+            this.btn_modify_task.Click += new System.EventHandler(this.btn_modify_task_Click);
             // 
             // btn_del_task
             // 

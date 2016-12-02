@@ -28,6 +28,8 @@ namespace Mediametrie
                 int i = 0;
                 int id = 0;
                 btn_add_task.Enabled = true;
+                btn_modify_task.Enabled = false;
+                btn_del_task.Enabled = false;
                 btn_modify_cont.Enabled = true;
                 btn_del_cont.Enabled = true;
                 using (var entities = new Database1Entities())
@@ -56,6 +58,8 @@ namespace Mediametrie
             else if (list_cont.SelectedIndex == 0)
             {
                 btn_add_task.Enabled = false;
+                btn_modify_task.Enabled = false;
+                btn_del_task.Enabled = false;
                 btn_modify_cont.Enabled = false;
                 btn_del_cont.Enabled = false;
                 using (var entities = new Database1Entities())
@@ -76,6 +80,8 @@ namespace Mediametrie
             else if (list_cont.SelectedIndex == 1)
             {
                 btn_add_task.Enabled = false;
+                btn_modify_task.Enabled = false;
+                btn_del_task.Enabled = false;
                 btn_modify_cont.Enabled = false;
                 btn_del_cont.Enabled = false;
                 using (var entities = new Database1Entities())
@@ -96,6 +102,8 @@ namespace Mediametrie
             else if (list_cont.SelectedIndex == 2)
             {
                 btn_add_task.Enabled = false;
+                btn_modify_task.Enabled = false;
+                btn_del_task.Enabled = false;
                 btn_modify_cont.Enabled = false;
                 btn_del_cont.Enabled = false;
                 using (var entities = new Database1Entities())
@@ -151,8 +159,8 @@ namespace Mediametrie
                 else if (list_cont.SelectedIndex == 0)
                 {
                     int j = 0;
-                    btn_modify_task.Enabled = true;
-                    btn_del_task.Enabled = true;
+                    btn_modify_task.Enabled = false;
+                    btn_del_task.Enabled = false;
                     using (var entities = new Database1Entities())
                     {
                         var listTask = from c in entities.Taches
@@ -169,8 +177,8 @@ namespace Mediametrie
                 else if (list_cont.SelectedIndex == 1)
                 {
                     int j = 0;
-                    btn_modify_task.Enabled = true;
-                    btn_del_task.Enabled = true;
+                    btn_modify_task.Enabled = false;
+                    btn_del_task.Enabled = false;
                     using (var entities = new Database1Entities())
                     {
                         var listTask = from c in entities.Taches
@@ -187,8 +195,8 @@ namespace Mediametrie
                 else if (list_cont.SelectedIndex == 2)
                 {
                     int j = 0;
-                    btn_modify_task.Enabled = true;
-                    btn_del_task.Enabled = true;
+                    btn_modify_task.Enabled = false;
+                    btn_del_task.Enabled = false;
                     using (var entities = new Database1Entities())
                     {
                         var listTask = from c in entities.Taches
@@ -214,15 +222,34 @@ namespace Mediametrie
         private void btn_del_task_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show(
-                "Voulez-vous vraiment supprimer : \"" + aff_taches.SelectedValue.ToString() + "\" ?",
+                "Voulez-vous vraiment supprimer : \"" + aff_taches.SelectedItem.ToString() + "\" ?",
                 "Suppression",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
-                aff_taches.Items.Remove(aff_taches.SelectedItem);
+                    int id = 0;
+                    int j = 0;
+                    btn_modify_task.Enabled = true;
+                    btn_del_task.Enabled = true;
+                    using (var ent = new Database1Entities())
+                    {
+                        id = getContId(list_cont.SelectedIndex);
+                        var listTask = from c in ent.Taches
+                                       where c.id_container == id
+                                       select c;
+                        foreach (var selected in listTask)
+                        {
+                            if (j == aff_taches.SelectedIndex)
+                                ent.Taches.Remove(selected);
+                            j++;
+                        }
+                    ent.SaveChanges();
+                    }
+                home_tasks_reload();
                 btn_modify_task.Enabled = false;
                 btn_del_task.Enabled = false;
+                description.Text = "";
                 int size_list = aff_taches.Items.Count;
                 int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + " / " + size_list;
@@ -303,6 +330,7 @@ namespace Mediametrie
 
         public void home_tasks_reload()
         {
+            aff_taches.Items.Clear();
             int id = 0;
             int i = 0;
             using (var entities = new Database1Entities())
@@ -355,6 +383,28 @@ namespace Mediametrie
                 }
             }
             return id;
+        }
+
+        private void btn_modify_task_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+            int j = 0;
+            var task = new Tache();
+            using (var entities = new Database1Entities())
+            {
+                id = getContId(list_cont.SelectedIndex);
+                var listTask = from c in entities.Taches
+                               where c.id_container == id
+                               select c;
+                foreach (var selected in listTask)
+                {
+                    if (j == aff_taches.SelectedIndex)
+                        task = selected;
+                    j++;
+                }
+            }
+            modify_task form = new modify_task(this, task);
+            form.ShowDialog();
         }
     }
 }
