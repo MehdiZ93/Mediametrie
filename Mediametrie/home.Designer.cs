@@ -34,7 +34,7 @@
             this.containerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.database1DataSet = new Mediametrie.Database1DataSet();
             this.containerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.description = new System.Windows.Forms.TextBox();
             this.aff_taches = new System.Windows.Forms.CheckedListBox();
             this.btn_add_task = new System.Windows.Forms.Button();
             this.btn_modify_task = new System.Windows.Forms.Button();
@@ -91,17 +91,17 @@
             this.containerBindingSource.DataMember = "Container";
             this.containerBindingSource.DataSource = this.database1DataSet;
             // 
-            // textBox2
+            // description
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(224, 422);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(642, 158);
-            this.textBox2.TabIndex = 6;
+            this.description.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.description.Enabled = false;
+            this.description.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.description.Location = new System.Drawing.Point(224, 417);
+            this.description.Multiline = true;
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            this.description.Size = new System.Drawing.Size(642, 163);
+            this.description.TabIndex = 6;
             // 
             // aff_taches
             // 
@@ -236,7 +236,7 @@
             this.Controls.Add(this.aff_taches);
             this.Controls.Add(this.head_tasks_rem);
             this.Controls.Add(this.nb_elem);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.description);
             this.Controls.Add(this.textBox3);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
@@ -257,7 +257,7 @@
         #endregion
         private System.Windows.Forms.TextBox head_tasks_rem;
         private System.Windows.Forms.TextBox nb_elem;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox description;
         private System.Windows.Forms.CheckedListBox aff_taches;
         private System.Windows.Forms.Button btn_add_task;
         private System.Windows.Forms.Button btn_modify_task;

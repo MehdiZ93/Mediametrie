@@ -41,7 +41,6 @@ namespace Mediametrie
                     var liste_tache = from c in entities.Taches
                                       where c.id_container == id
                                       select c;
-
                     foreach (var item in liste_tache)
                     {
                         aff_taches.Items.Add(item.nom);
@@ -116,16 +115,97 @@ namespace Mediametrie
 
         private void checkedListBox1_Click(object sender, EventArgs e)
         {
+            var curr_date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             if (aff_taches.SelectedIndex != -1)
             {
-                btn_modify_task.Enabled = true;
-                btn_del_task.Enabled = true;
+                if (list_cont.SelectedIndex > 2)
+                {
+                    int id = 0;
+                    int i = 0;
+                    int j = 0;
+                    btn_modify_task.Enabled = true;
+                    btn_del_task.Enabled = true;
+                    using (var entities = new Database1Entities())
+                    {
+                        var listCont = from cont in entities.Containers
+                                       select cont;
+                        foreach (var match in listCont)
+                        {
+                            if (i == list_cont.SelectedIndex)
+                                id = match.Id;
+                            i++;
+                        }
+                        var listTask = from c in entities.Taches
+                                       where c.id_container == id
+                                       select c;
+                        foreach (var selected in listTask)
+                        {
+                            if (j == aff_taches.SelectedIndex)
+                                description.Text = selected.description;
+                            j++;
+                        }
+                    }
+                }
+                else if (list_cont.SelectedIndex == 0)
+                {
+                    int j = 0;
+                    btn_modify_task.Enabled = true;
+                    btn_del_task.Enabled = true;
+                    using (var entities = new Database1Entities())
+                    {
+                        var listTask = from c in entities.Taches
+                                       where c.priorite > 3
+                                       select c;
+                        foreach (var selected in listTask)
+                        {
+                            if (j == aff_taches.SelectedIndex)
+                                description.Text = selected.description;
+                            j++;
+                        }
+                    }
+                }
+                else if (list_cont.SelectedIndex == 1)
+                {
+                    int j = 0;
+                    btn_modify_task.Enabled = true;
+                    btn_del_task.Enabled = true;
+                    using (var entities = new Database1Entities())
+                    {
+                        var listTask = from c in entities.Taches
+                                       where c.etat == false
+                                       select c;
+                        foreach (var selected in listTask)
+                        {
+                            if (j == aff_taches.SelectedIndex)
+                                description.Text = selected.description;
+                            j++;
+                        }
+                    }
+                }
+                else if (list_cont.SelectedIndex == 2)
+                {
+                    int j = 0;
+                    btn_modify_task.Enabled = true;
+                    btn_del_task.Enabled = true;
+                    using (var entities = new Database1Entities())
+                    {
+                        var listTask = from c in entities.Taches
+                                       where c.date_fin == curr_date
+                                       select c;
+                        foreach (var selected in listTask)
+                        {
+                            if (j == aff_taches.SelectedIndex)
+                                description.Text = selected.description;
+                            j++;
+                        }
+                    }
+                }
             }
         }
 
         private void btn_add_task_Click(object sender, EventArgs e)
         {
-            add_task form2 = new add_task();
+            add_task form2 = new add_task(this);
             form2.ShowDialog();
         }
 

@@ -12,8 +12,10 @@ namespace Mediametrie
 {
     public partial class add_task : Form
     {
-        public add_task()
+        home h;
+        public add_task(home h)
         {
+            this.h = h;
             InitializeComponent();
         }
 
@@ -33,7 +35,6 @@ namespace Mediametrie
                 prio = Int32.Parse(radio_prio4.Text);
             else if (radio_prio5.Checked)
                 prio = Int32.Parse(radio_prio5.Text);
-            MessageBox.Show(date_fin.ToString());
         }
 
         private void button2_Click(object sender, EventArgs e)
