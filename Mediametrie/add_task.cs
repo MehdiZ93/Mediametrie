@@ -13,28 +13,51 @@ namespace Mediametrie
     public partial class add_task : Form
     {
         home h;
-        public add_task(home h)
+        int index;
+        public add_task(home h, int index)
         {
             this.h = h;
+            this.index = index;
             InitializeComponent();
         }
 
         private void btn_val_Click(object sender, EventArgs e)
         {
+            btn_val.Enabled = false;
+            button2.Enabled = false;
             string descript = description.Text;
             string titre = title.Text;
             DateTime date_fin = end_date.Value;
-            int prio = 0;
+            byte prio = 0;
             if (radio_prio1.Checked)
-                prio = Int32.Parse(radio_prio1.Text);
+                prio = 1;
             else if (radio_prio2.Checked)
-                prio = Int32.Parse(radio_prio2.Text);
+                prio = 2;
             else if (radio_prio3.Checked)
-                prio = Int32.Parse(radio_prio3.Text);
+                prio = 3;
             else if (radio_prio4.Checked)
-                prio = Int32.Parse(radio_prio4.Text);
+                prio = 4;
             else if (radio_prio5.Checked)
-                prio = Int32.Parse(radio_prio5.Text);
+                prio = 5;
+            var nouvelletache = new Tache();
+            nouvelletache.nom = titre;
+            nouvelletache.description = descript;
+            nouvelletache.date_creation = DateTime.Now;
+            nouvelletache.date_fin = date_fin;
+            nouvelletache.etat = false;
+            nouvelletache.id_container = h.getContId(index);
+            nouvelletache.priorite = prio;
+            using (var entities = new Database1Entities())
+            {
+                var lastId = (from c in entities.Taches
+                              orderby c.Id descending
+                              select c.Id).First();
+                nouvelletache.Id = lastId + 1;
+                entities.Taches.Add(nouvelletache);
+                entities.SaveChanges();
+            }
+            h.home_tasks_reload();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

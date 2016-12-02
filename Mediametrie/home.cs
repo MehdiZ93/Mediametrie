@@ -21,6 +21,8 @@ namespace Mediametrie
         {
             var curr_date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             aff_taches.Items.Clear();
+            if (list_cont.SelectedIndex != -1)
+                description.Text = "";
             if (list_cont.SelectedIndex > 2)
             {
                 int i = 0;
@@ -111,7 +113,7 @@ namespace Mediametrie
                 int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + " / " + size_list;
             }
-    }
+        }
 
         private void checkedListBox1_Click(object sender, EventArgs e)
         {
@@ -205,7 +207,7 @@ namespace Mediametrie
 
         private void btn_add_task_Click(object sender, EventArgs e)
         {
-            add_task form2 = new add_task(this);
+            add_task form2 = new add_task(this, list_cont.SelectedIndex);
             form2.ShowDialog();
         }
 
@@ -241,7 +243,7 @@ namespace Mediametrie
                 {
                     var listCont = from c in entities.Containers
                                    select c;
-                    foreach(var item in listCont)
+                    foreach (var item in listCont)
                     {
                         if (i == list_cont.SelectedIndex)
                             entities.Containers.Remove(item);
@@ -277,7 +279,7 @@ namespace Mediametrie
         {
             using (var entities = new Database1Entities())
             {
-                foreach(var names in entities.Containers)
+                foreach (var names in entities.Containers)
                 {
                     list_cont.Items.Add(names.nom);
                 }
@@ -299,6 +301,30 @@ namespace Mediametrie
             nb_elem.Text = "";
         }
 
+        public void home_tasks_reload()
+        {
+            int id = 0;
+            int i = 0;
+            using (var entities = new Database1Entities())
+            {
+                var listCont = from cont in entities.Containers
+                               select cont;
+                foreach (var match in listCont)
+                {
+                    if (i == list_cont.SelectedIndex)
+                        id = match.Id;
+                    i++;
+                }
+                var liste_tache = from c in entities.Taches
+                                  where c.id_container == id
+                                  select c;
+                foreach (var item in liste_tache)
+                {
+                    aff_taches.Items.Add(item.nom);
+                }
+            }
+        }
+
         private void btn_add_cont_Click(object sender, EventArgs e)
         {
             add_cont form = new add_cont(this);
@@ -311,6 +337,24 @@ namespace Mediametrie
             btn_del_cont.Enabled = false;
             modify_cont form = new modify_cont(this, list_cont.SelectedItem.ToString(), list_cont.SelectedIndex);
             form.ShowDialog();
+        }
+
+        public int getContId(int index)
+        {
+            int i = 0;
+            int id = 0;
+            using (var entities = new Database1Entities())
+            {
+                var listCont = from cont in entities.Containers
+                               select cont;
+                foreach (var match in listCont)
+                {
+                    if (i == index)
+                        id = match.Id;
+                    i++;
+                }
+            }
+            return id;
         }
     }
 }
