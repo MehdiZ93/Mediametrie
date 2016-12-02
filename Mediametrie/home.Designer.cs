@@ -116,6 +116,7 @@
             // 
             // btn_add_task
             // 
+            this.btn_add_task.Enabled = false;
             this.btn_add_task.Location = new System.Drawing.Point(292, 587);
             this.btn_add_task.Name = "btn_add_task";
             this.btn_add_task.Size = new System.Drawing.Size(166, 36);

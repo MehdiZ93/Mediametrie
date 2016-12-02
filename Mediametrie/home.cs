@@ -19,25 +19,100 @@ namespace Mediametrie
 
         private void list_cont_Click(object sender, EventArgs e)
         {
+            var curr_date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            aff_taches.Items.Clear();
             if (list_cont.SelectedIndex > 2)
             {
+                int i = 0;
+                int id = 0;
+                btn_add_task.Enabled = true;
                 btn_modify_cont.Enabled = true;
                 btn_del_cont.Enabled = true;
+                using (var entities = new Database1Entities())
+                {
+                    var listCont = from cont in entities.Containers
+                                   select cont;
+                    foreach (var match in listCont)
+                    {
+                        if (i == list_cont.SelectedIndex)
+                            id = match.Id;
+                        i++;
+                    }
+                    var liste_tache = from c in entities.Taches
+                                      where c.id_container == id
+                                      select c;
+
+                    foreach (var item in liste_tache)
+                    {
+                        aff_taches.Items.Add(item.nom);
+                    }
+                }
                 head_tasks_rem.Text = list_cont.SelectedItem.ToString();
                 int size_list = aff_taches.Items.Count;
                 int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + " / " + size_list;
             }
-            else if (list_cont.SelectedIndex != -1)
+            else if (list_cont.SelectedIndex == 0)
             {
+                btn_add_task.Enabled = false;
                 btn_modify_cont.Enabled = false;
                 btn_del_cont.Enabled = false;
+                using (var entities = new Database1Entities())
+                {
+                    var liste_tache = from c in entities.Taches
+                                      where c.priorite > 3
+                                      select c;
+                    foreach (var item in liste_tache)
+                    {
+                        aff_taches.Items.Add(item.nom);
+                    }
+                }
                 head_tasks_rem.Text = list_cont.SelectedItem.ToString();
                 int size_list = aff_taches.Items.Count;
                 int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + " / " + size_list;
             }
-        }
+            else if (list_cont.SelectedIndex == 1)
+            {
+                btn_add_task.Enabled = false;
+                btn_modify_cont.Enabled = false;
+                btn_del_cont.Enabled = false;
+                using (var entities = new Database1Entities())
+                {
+                    var liste_tache = from c in entities.Taches
+                                      where c.etat == false
+                                      select c;
+                    foreach (var item in liste_tache)
+                    {
+                        aff_taches.Items.Add(item.nom);
+                    }
+                }
+                head_tasks_rem.Text = list_cont.SelectedItem.ToString();
+                int size_list = aff_taches.Items.Count;
+                int nbr_checked_list = aff_taches.CheckedItems.Count;
+                nb_elem.Text = nbr_checked_list + " / " + size_list;
+            }
+            else if (list_cont.SelectedIndex == 2)
+            {
+                btn_add_task.Enabled = false;
+                btn_modify_cont.Enabled = false;
+                btn_del_cont.Enabled = false;
+                using (var entities = new Database1Entities())
+                {
+                    var liste_tache = from c in entities.Taches
+                                      where c.date_fin == curr_date
+                                      select c;
+                    foreach (var item in liste_tache)
+                    {
+                        aff_taches.Items.Add(item.nom);
+                    }
+                }
+                head_tasks_rem.Text = list_cont.SelectedItem.ToString();
+                int size_list = aff_taches.Items.Count;
+                int nbr_checked_list = aff_taches.CheckedItems.Count;
+                nb_elem.Text = nbr_checked_list + " / " + size_list;
+            }
+    }
 
         private void checkedListBox1_Click(object sender, EventArgs e)
         {
@@ -139,6 +214,7 @@ namespace Mediametrie
                     list_cont.Items.Add(names.nom);
                 }
             }
+            aff_taches.Items.Clear();
             head_tasks_rem.Text = "";
             nb_elem.Text = "";
         }
