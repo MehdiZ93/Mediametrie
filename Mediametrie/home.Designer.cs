@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.head_tasks_rem = new System.Windows.Forms.TextBox();
             this.nb_elem = new System.Windows.Forms.TextBox();
-            this.aff_listes = new System.Windows.Forms.ListBox();
-            this.containerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.containerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.database1DataSet = new Mediametrie.Database1DataSet();
+            this.containerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.aff_taches = new System.Windows.Forms.CheckedListBox();
             this.btn_add_task = new System.Windows.Forms.Button();
@@ -45,8 +45,12 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.containerTableAdapter = new Mediametrie.Database1DataSetTableAdapters.ContainerTableAdapter();
             this.tableAdapterManager = new Mediametrie.Database1DataSetTableAdapters.TableAdapterManager();
-            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource)).BeginInit();
+            this.containerBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.list_cont = new System.Windows.Forms.ListBox();
+            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // head_tasks_rem
@@ -72,30 +76,20 @@
             this.nb_elem.Size = new System.Drawing.Size(101, 53);
             this.nb_elem.TabIndex = 4;
             // 
-            // aff_listes
+            // containerBindingSource1
             // 
-            this.aff_listes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.aff_listes.DataSource = this.containerBindingSource;
-            this.aff_listes.DisplayMember = "nom";
-            this.aff_listes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aff_listes.FormattingEnabled = true;
-            this.aff_listes.ItemHeight = 25;
-            this.aff_listes.Location = new System.Drawing.Point(12, 23);
-            this.aff_listes.Name = "aff_listes";
-            this.aff_listes.Size = new System.Drawing.Size(206, 475);
-            this.aff_listes.TabIndex = 5;
-            this.aff_listes.ValueMember = "Id";
-            this.aff_listes.Click += new System.EventHandler(this.listBox1_Click);
-            // 
-            // containerBindingSource
-            // 
-            this.containerBindingSource.DataMember = "Container";
-            this.containerBindingSource.DataSource = this.database1DataSet;
+            this.containerBindingSource1.DataMember = "Container";
+            this.containerBindingSource1.DataSource = this.database1DataSet;
             // 
             // database1DataSet
             // 
             this.database1DataSet.DataSetName = "Database1DataSet";
             this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // containerBindingSource
+            // 
+            this.containerBindingSource.DataMember = "Container";
+            this.containerBindingSource.DataSource = this.database1DataSet;
             // 
             // textBox2
             // 
@@ -153,7 +147,6 @@
             // 
             // btn_del_cont
             // 
-            this.btn_del_cont.Enabled = false;
             this.btn_del_cont.Location = new System.Drawing.Point(22, 586);
             this.btn_del_cont.Name = "btn_del_cont";
             this.btn_del_cont.Size = new System.Drawing.Size(185, 36);
@@ -164,7 +157,6 @@
             // 
             // btn_modify_cont
             // 
-            this.btn_modify_cont.Enabled = false;
             this.btn_modify_cont.Location = new System.Drawing.Point(22, 544);
             this.btn_modify_cont.Name = "btn_modify_cont";
             this.btn_modify_cont.Size = new System.Drawing.Size(185, 36);
@@ -180,6 +172,7 @@
             this.btn_add_cont.TabIndex = 13;
             this.btn_add_cont.Text = "Ajouter un container";
             this.btn_add_cont.UseVisualStyleBackColor = true;
+            this.btn_add_cont.Click += new System.EventHandler(this.btn_add_cont_Click);
             // 
             // textBox3
             // 
@@ -205,6 +198,23 @@
             this.tableAdapterManager.TacheTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Mediametrie.Database1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // containerBindingSource2
+            // 
+            this.containerBindingSource2.DataMember = "Container";
+            this.containerBindingSource2.DataSource = this.database1DataSet;
+            // 
+            // list_cont
+            // 
+            this.list_cont.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.list_cont.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.list_cont.FormattingEnabled = true;
+            this.list_cont.ItemHeight = 29;
+            this.list_cont.Location = new System.Drawing.Point(12, 23);
+            this.list_cont.Name = "list_cont";
+            this.list_cont.Size = new System.Drawing.Size(206, 406);
+            this.list_cont.TabIndex = 15;
+            this.list_cont.Click += new System.EventHandler(this.list_cont_Click);
+            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -212,6 +222,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(878, 644);
+            this.Controls.Add(this.list_cont);
             this.Controls.Add(this.btn_add_cont);
             this.Controls.Add(this.btn_modify_cont);
             this.Controls.Add(this.btn_del_cont);
@@ -219,7 +230,6 @@
             this.Controls.Add(this.btn_modify_task);
             this.Controls.Add(this.btn_add_task);
             this.Controls.Add(this.aff_taches);
-            this.Controls.Add(this.aff_listes);
             this.Controls.Add(this.head_tasks_rem);
             this.Controls.Add(this.nb_elem);
             this.Controls.Add(this.textBox2);
@@ -231,8 +241,10 @@
             this.Name = "home";
             this.Text = "Gestionnaire de tâches";
             this.Load += new System.EventHandler(this.home_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.containerBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,7 +253,6 @@
         #endregion
         private System.Windows.Forms.TextBox head_tasks_rem;
         private System.Windows.Forms.TextBox nb_elem;
-        private System.Windows.Forms.ListBox aff_listes;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.CheckedListBox aff_taches;
         private System.Windows.Forms.Button btn_add_task;
@@ -255,6 +266,9 @@
         private System.Windows.Forms.BindingSource containerBindingSource;
         private Database1DataSetTableAdapters.ContainerTableAdapter containerTableAdapter;
         private Database1DataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.BindingSource containerBindingSource1;
+        private System.Windows.Forms.BindingSource containerBindingSource2;
+        private System.Windows.Forms.ListBox list_cont;
     }
 }
 

@@ -185,6 +185,8 @@
             // btn_val
             // 
             this.btn_val.Location = new System.Drawing.Point(535, 352);
+            this.btn_val.MaximumSize = new System.Drawing.Size(121, 75);
+            this.btn_val.MinimumSize = new System.Drawing.Size(121, 75);
             this.btn_val.Name = "btn_val";
             this.btn_val.Size = new System.Drawing.Size(121, 75);
             this.btn_val.TabIndex = 14;
@@ -195,6 +197,8 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(396, 352);
+            this.button2.MaximumSize = new System.Drawing.Size(121, 75);
+            this.button2.MinimumSize = new System.Drawing.Size(121, 75);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 75);
             this.button2.TabIndex = 15;
@@ -223,6 +227,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.title);
+            this.MaximumSize = new System.Drawing.Size(700, 512);
+            this.MinimumSize = new System.Drawing.Size(700, 512);
             this.Name = "add_task";
             this.Text = "Ajout d\'une tâche";
             this.ResumeLayout(false);

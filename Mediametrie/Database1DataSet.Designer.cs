@@ -28,6 +28,8 @@ namespace Mediametrie {
         
         private TacheDataTable tableTache;
         
+        private global::System.Data.DataRelation relationContainer_Tache;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -218,6 +220,7 @@ namespace Mediametrie {
                     this.tableTache.InitVars();
                 }
             }
+            this.relationContainer_Tache = this.Relations["Container_Tache"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -232,6 +235,10 @@ namespace Mediametrie {
             base.Tables.Add(this.tableContainer);
             this.tableTache = new TacheDataTable();
             base.Tables.Add(this.tableTache);
+            this.relationContainer_Tache = new global::System.Data.DataRelation("Container_Tache", new global::System.Data.DataColumn[] {
+                        this.tableContainer.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTache.id_containerColumn}, false);
+            this.Relations.Add(this.relationContainer_Tache);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -753,7 +760,7 @@ namespace Mediametrie {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TacheRow AddTacheRow(int Id, string nom, string description, System.DateTime date_creation, System.DateTime date_fin, bool etat, byte priorite, int id_container) {
+            public TacheRow AddTacheRow(int Id, string nom, string description, System.DateTime date_creation, System.DateTime date_fin, bool etat, byte priorite, ContainerRow parentContainerRowByContainer_Tache) {
                 TacheRow rowTacheRow = ((TacheRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -763,7 +770,10 @@ namespace Mediametrie {
                         date_fin,
                         etat,
                         priorite,
-                        id_container};
+                        null};
+                if ((parentContainerRowByContainer_Tache != null)) {
+                    columnValuesArray[7] = parentContainerRowByContainer_Tache[0];
+                }
                 rowTacheRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTacheRow);
                 return rowTacheRow;
@@ -1007,6 +1017,17 @@ namespace Mediametrie {
                     this[this.tableContainer.etatColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TacheRow[] GetTacheRows() {
+                if ((this.Table.ChildRelations["Container_Tache"] == null)) {
+                    return new TacheRow[0];
+                }
+                else {
+                    return ((TacheRow[])(base.GetChildRows(this.Table.ChildRelations["Container_Tache"])));
+                }
+            }
         }
         
         /// <summary>
@@ -1108,6 +1129,17 @@ namespace Mediametrie {
                 }
                 set {
                     this[this.tableTache.id_containerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ContainerRow ContainerRow {
+                get {
+                    return ((ContainerRow)(this.GetParentRow(this.Table.ParentRelations["Container_Tache"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Container_Tache"]);
                 }
             }
         }
