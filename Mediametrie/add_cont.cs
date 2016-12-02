@@ -12,24 +12,31 @@ namespace Mediametrie
 {
     public partial class add_cont : Form
     {
-
-        public add_cont()
+        home h;
+        public add_cont(home h)
         {
+            this.h = h;
             InitializeComponent();
         }
 
         private void btn_reset_val_Click(object sender, EventArgs e)
         {
+            btn_reset_cont.Enabled = false;
+            btn_val_cont.Enabled = false;
             string text = title_cont.Text;
             var newcontainer = new Container();
             newcontainer.nom = text;
-            newcontainer.Id = 4;
             newcontainer.etat = true;
             using (var con = new Database1Entities())
             {
+                var lastId = (from c in con.Containers
+                              orderby c.Id descending
+                              select c.Id).First();
+                newcontainer.Id = lastId + 1;
                 con.Containers.Add(newcontainer);
                 con.SaveChanges();
             }
+            h.home_reload();
             this.Close();
         }
 

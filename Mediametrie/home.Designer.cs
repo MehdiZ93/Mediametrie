@@ -147,6 +147,7 @@
             // 
             // btn_del_cont
             // 
+            this.btn_del_cont.Enabled = false;
             this.btn_del_cont.Location = new System.Drawing.Point(22, 586);
             this.btn_del_cont.Name = "btn_del_cont";
             this.btn_del_cont.Size = new System.Drawing.Size(185, 36);
@@ -157,6 +158,7 @@
             // 
             // btn_modify_cont
             // 
+            this.btn_modify_cont.Enabled = false;
             this.btn_modify_cont.Location = new System.Drawing.Point(22, 544);
             this.btn_modify_cont.Name = "btn_modify_cont";
             this.btn_modify_cont.Size = new System.Drawing.Size(185, 36);

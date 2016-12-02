@@ -19,15 +19,24 @@ namespace Mediametrie
 
         private void list_cont_Click(object sender, EventArgs e)
         {
-            /*if (list_cont.SelectedIndex != -1)
+            if (list_cont.SelectedIndex > 2)
             {
                 btn_modify_cont.Enabled = true;
                 btn_del_cont.Enabled = true;
-                head_tasks_rem.Text = list_cont.SelectedValue.ToString();
+                head_tasks_rem.Text = list_cont.SelectedItem.ToString();
                 int size_list = aff_taches.Items.Count;
                 int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + " / " + size_list;
-            }*/
+            }
+            else if (list_cont.SelectedIndex != -1)
+            {
+                btn_modify_cont.Enabled = false;
+                btn_del_cont.Enabled = false;
+                head_tasks_rem.Text = list_cont.SelectedItem.ToString();
+                int size_list = aff_taches.Items.Count;
+                int nbr_checked_list = aff_taches.CheckedItems.Count;
+                nb_elem.Text = nbr_checked_list + " / " + size_list;
+            }
         }
 
         private void checkedListBox1_Click(object sender, EventArgs e)
@@ -65,14 +74,29 @@ namespace Mediametrie
 
         private void btn_del_cont_Click(object sender, EventArgs e)
         {
+            int i = 0;
             DialogResult dialogResult = MessageBox.Show(
-                "Voulez-vous vraiment supprimer : \"" + list_cont.SelectedValue.ToString() + "\" ?",
+                "Voulez-vous vraiment supprimer : \"" + list_cont.SelectedItem.ToString() + "\" ?",
                 "Suppression",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
-                list_cont.Items.Remove(list_cont.SelectedItem);
+                using (var entities = new Database1Entities())
+                {
+                    var listCont = from c in entities.Containers
+                                   select c;
+                    foreach(var item in listCont)
+                    {
+                        if (i == list_cont.SelectedIndex)
+                            entities.Containers.Remove(item);
+                        i++;
+                    }
+                    entities.SaveChanges();
+                }
+                home_reload();
+                head_tasks_rem.Text = "";
+                nb_elem.Text = "";
                 btn_modify_cont.Enabled = false;
                 btn_del_cont.Enabled = false;
             }
@@ -105,9 +129,21 @@ namespace Mediametrie
             }
         }
 
+        public void home_reload()
+        {
+            list_cont.Items.Clear();
+            using (var entities = new Database1Entities())
+            {
+                foreach (var names in entities.Containers)
+                {
+                    list_cont.Items.Add(names.nom);
+                }
+            }
+        }
+
         private void btn_add_cont_Click(object sender, EventArgs e)
         {
-            add_cont form = new add_cont();
+            add_cont form = new add_cont(this);
             form.ShowDialog();
         }
     }
