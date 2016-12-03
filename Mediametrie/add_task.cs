@@ -49,10 +49,13 @@ namespace Mediametrie
             nouvelletache.priorite = prio;
             using (var entities = new Database1Entities())
             {
-                var lastId = (from c in entities.Taches
+                var lastId = from c in entities.Taches
                               orderby c.Id descending
-                              select c.Id).First();
-                nouvelletache.Id = lastId + 1;
+                              select c.Id;
+                if (lastId.Count() != 0)
+                    nouvelletache.Id = lastId.First() + 1;
+                else
+                    nouvelletache.Id = 1;
                 entities.Taches.Add(nouvelletache);
                 entities.SaveChanges();
             }

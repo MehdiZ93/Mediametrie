@@ -13,6 +13,7 @@ namespace Mediametrie
     public partial class home : Form
     {
         bool checkedornot = false;
+        public bool firsttask = true;
         public home()
         {
             InitializeComponent();
@@ -311,7 +312,14 @@ namespace Mediametrie
                     foreach (var item in listCont)
                     {
                         if (i == list_cont.SelectedIndex)
+                        {
+                            foreach (var task in entities.Taches)
+                            {
+                                if (task.id_container == item.Id)
+                                    entities.Taches.Remove(task);
+                            }
                             entities.Containers.Remove(item);
+                        }
                         i++;
                     }
                     entities.SaveChanges();

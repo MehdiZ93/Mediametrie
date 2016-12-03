@@ -57,5 +57,17 @@ namespace Mediametrie
             h.home_tasks_reload();
             this.Close();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            description.Text = "";
+            title.Text = "";
+            end_date.Value = DateTime.Now;
+            radio_prio1.Checked = true;
+            radio_prio2.Checked = false;
+            radio_prio3.Checked = false;
+            radio_prio4.Checked = false;
+            radio_prio5.Checked = false;
+        }
     }
 }
