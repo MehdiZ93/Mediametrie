@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(modify_cont));
             this.label1 = new System.Windows.Forms.Label();
             this.title_cont = new System.Windows.Forms.TextBox();
             this.btn_reset_cont = new System.Windows.Forms.Button();
@@ -81,6 +82,7 @@
             this.Controls.Add(this.title_cont);
             this.Controls.Add(this.btn_reset_cont);
             this.Controls.Add(this.btn_val_cont);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(397, 246);
             this.MinimumSize = new System.Drawing.Size(397, 246);
             this.Name = "modify_cont";
