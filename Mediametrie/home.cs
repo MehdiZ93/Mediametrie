@@ -140,6 +140,9 @@ namespace Mediametrie
 
         private void checkedListBox1_Click(object sender, EventArgs e)
         {
+            var datefin = "";
+            var datedebut = "";
+            string descript = "";
             var curr_date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             if (aff_taches.SelectedIndex != -1)
             {
@@ -166,7 +169,12 @@ namespace Mediametrie
                         foreach (var selected in listTask)
                         {
                             if (j == aff_taches.SelectedIndex)
-                                description.Text = selected.description;
+                            {
+                                datedebut = selected.date_creation.Day + "/" + selected.date_creation.Month + "/" + selected.date_creation.Year;
+                                datefin = selected.date_fin.Day + "/" + selected.date_fin.Month + "/" + selected.date_fin.Year;
+                                descript = "Date de création : " + datedebut + "  -  Date de fin : " + datefin + "  -  Priorité : " + selected.priorite + "\r\n\r\nDescription :\r\n" + selected.description;
+                                description.Text = descript;
+                            }
                             j++;
                         }
                     }
@@ -184,7 +192,12 @@ namespace Mediametrie
                         foreach (var selected in listTask)
                         {
                             if (j == aff_taches.SelectedIndex)
-                                description.Text = selected.description;
+                            {
+                                datedebut = selected.date_creation.Day + "/" + selected.date_creation.Month + "/" + selected.date_creation.Year;
+                                datefin = selected.date_fin.Day + "/" + selected.date_fin.Month + "/" + selected.date_fin.Year;
+                                descript = "Date de création : " + datedebut + "  -  Date de fin : " + datefin + "  -  Priorité : " + selected.priorite + "\r\n\r\nDescription :\r\n" + selected.description;
+                                description.Text = descript;
+                            }
                             j++;
                         }
                     }
@@ -202,7 +215,12 @@ namespace Mediametrie
                         foreach (var selected in listTask)
                         {
                             if (j == aff_taches.SelectedIndex)
-                                description.Text = selected.description;
+                            {
+                                datedebut = selected.date_creation.Day + "/" + selected.date_creation.Month + "/" + selected.date_creation.Year;
+                                datefin = selected.date_fin.Day + "/" + selected.date_fin.Month + "/" + selected.date_fin.Year;
+                                descript = "Date de création : " + datedebut + "  -  Date de fin : " + datefin + "  -  Priorité : " + selected.priorite + "\r\n\r\nDescription :\r\n" + selected.description;
+                                description.Text = descript;
+                            }
                             j++;
                         }
                     }
@@ -220,7 +238,12 @@ namespace Mediametrie
                         foreach (var selected in listTask)
                         {
                             if (j == aff_taches.SelectedIndex)
-                                description.Text = selected.description;
+                            {
+                                datedebut = selected.date_creation.Day + "/" + selected.date_creation.Month + "/" + selected.date_creation.Year;
+                                datefin = selected.date_fin.Day + "/" + selected.date_fin.Month + "/" + selected.date_fin.Year;
+                                descript = "Date de création : " + datedebut + "  -  Date de fin : " + datefin + "  -  Priorité : " + selected.priorite + "\r\n\r\nDescription :\r\n" + selected.description;
+                                description.Text = descript;
+                            }
                             j++;
                         }
                     }
