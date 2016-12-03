@@ -12,6 +12,7 @@ namespace Mediametrie
 {
     public partial class home : Form
     {
+        bool checkedornot = false;
         public home()
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace Mediametrie
 
         private void list_cont_Click(object sender, EventArgs e)
         {
+            checkedornot = false;
             var curr_date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             aff_taches.Items.Clear();
             if (list_cont.SelectedIndex != -1)
@@ -47,7 +49,10 @@ namespace Mediametrie
                                       select c;
                     foreach (var item in liste_tache)
                     {
-                        aff_taches.Items.Add(item.nom);
+                        if (item.etat == true)
+                            aff_taches.Items.Add(item.nom, true);
+                        else
+                            aff_taches.Items.Add(item.nom);
                     }
                 }
                 head_tasks_rem.Text = list_cont.SelectedItem.ToString();
@@ -69,7 +74,10 @@ namespace Mediametrie
                                       select c;
                     foreach (var item in liste_tache)
                     {
-                        aff_taches.Items.Add(item.nom);
+                        if (item.etat == true)
+                            aff_taches.Items.Add(item.nom, true);
+                        else
+                            aff_taches.Items.Add(item.nom);
                     }
                 }
                 head_tasks_rem.Text = list_cont.SelectedItem.ToString();
@@ -91,7 +99,10 @@ namespace Mediametrie
                                       select c;
                     foreach (var item in liste_tache)
                     {
-                        aff_taches.Items.Add(item.nom);
+                        if (item.etat == true)
+                            aff_taches.Items.Add(item.nom, true);
+                        else
+                            aff_taches.Items.Add(item.nom);
                     }
                 }
                 head_tasks_rem.Text = list_cont.SelectedItem.ToString();
@@ -113,7 +124,10 @@ namespace Mediametrie
                                       select c;
                     foreach (var item in liste_tache)
                     {
-                        aff_taches.Items.Add(item.nom);
+                        if (item.etat == true)
+                            aff_taches.Items.Add(item.nom, true);
+                        else
+                            aff_taches.Items.Add(item.nom);
                     }
                 }
                 head_tasks_rem.Text = list_cont.SelectedItem.ToString();
@@ -121,6 +135,7 @@ namespace Mediametrie
                 int nbr_checked_list = aff_taches.CheckedItems.Count;
                 nb_elem.Text = nbr_checked_list + " / " + size_list;
             }
+            checkedornot = true;
         }
 
         private void checkedListBox1_Click(object sender, EventArgs e)
@@ -288,17 +303,123 @@ namespace Mediametrie
 
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (aff_taches.GetItemCheckState(aff_taches.SelectedIndex) == CheckState.Checked)
+            if (checkedornot == true)
             {
-                int size_list = aff_taches.Items.Count;
-                int nbr_checked_list = aff_taches.CheckedItems.Count;
-                nb_elem.Text = nbr_checked_list - 1 + " / " + size_list;
-            }
-            else
-            {
-                int size_list = aff_taches.Items.Count;
-                int nbr_checked_list = aff_taches.CheckedItems.Count;
-                nb_elem.Text = nbr_checked_list + 1 + " / " + size_list;
+                int i = 0;
+                using (var entities = new Database1Entities())
+                {
+                    if (list_cont.SelectedIndex > 2)
+                    {
+                        int id_cont = getContId(list_cont.SelectedIndex);
+                        var listTask = from c in entities.Taches
+                                       where c.id_container == id_cont
+                                       select c;
+                        foreach(var selected in listTask)
+                        {
+                            if (aff_taches.SelectedIndex == i)
+                            {
+                                if (aff_taches.GetItemCheckState(aff_taches.SelectedIndex) == CheckState.Checked)
+                                {
+                                    selected.etat = false;
+                                    int size_list = aff_taches.Items.Count;
+                                    int nbr_checked_list = aff_taches.CheckedItems.Count;
+                                    nb_elem.Text = nbr_checked_list - 1 + " / " + size_list;
+                                }
+                                else
+                                {
+                                    selected.etat = true;
+                                    int size_list = aff_taches.Items.Count;
+                                    int nbr_checked_list = aff_taches.CheckedItems.Count;
+                                    nb_elem.Text = nbr_checked_list + 1 + " / " + size_list;
+                                }
+                            }
+                            i++;
+                        }
+                    }
+                    else if (list_cont.SelectedIndex == 0)
+                    {
+                        var listTask = from c in entities.Taches
+                                       where c.priorite > 3
+                                       select c;
+                        foreach (var selected in listTask)
+                        {
+                            if (aff_taches.SelectedIndex == i)
+                            {
+                                if (aff_taches.GetItemCheckState(aff_taches.SelectedIndex) == CheckState.Checked)
+                                {
+                                    selected.etat = false;
+                                    int size_list = aff_taches.Items.Count;
+                                    int nbr_checked_list = aff_taches.CheckedItems.Count;
+                                    nb_elem.Text = nbr_checked_list - 1 + " / " + size_list;
+                                }
+                                else
+                                {
+                                    selected.etat = true;
+                                    int size_list = aff_taches.Items.Count;
+                                    int nbr_checked_list = aff_taches.CheckedItems.Count;
+                                    nb_elem.Text = nbr_checked_list + 1 + " / " + size_list;
+                                }
+                            }
+                            i++;
+                        }
+                    }
+                    else if (list_cont.SelectedIndex == 1)
+                    {
+                        var listTask = from c in entities.Taches
+                                       where c.etat == false
+                                       select c;
+                        foreach (var selected in listTask)
+                        {
+                            if (aff_taches.SelectedIndex == i)
+                            {
+                                if (aff_taches.GetItemCheckState(aff_taches.SelectedIndex) == CheckState.Checked)
+                                {
+                                    selected.etat = false;
+                                    int size_list = aff_taches.Items.Count;
+                                    int nbr_checked_list = aff_taches.CheckedItems.Count;
+                                    nb_elem.Text = nbr_checked_list - 1 + " / " + size_list;
+                                }
+                                else
+                                {
+                                    selected.etat = true;
+                                    int size_list = aff_taches.Items.Count;
+                                    int nbr_checked_list = aff_taches.CheckedItems.Count;
+                                    nb_elem.Text = nbr_checked_list + 1 + " / " + size_list;
+                                }
+                            }
+                            i++;
+                        }
+                    }
+                    else if (list_cont.SelectedIndex == 2)
+                    {
+                        var curr_date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                        var listTask = from c in entities.Taches
+                                       where c.date_fin == curr_date
+                                       select c;
+                        foreach (var selected in listTask)
+                        {
+                            if (aff_taches.SelectedIndex == i)
+                            {
+                                if (aff_taches.GetItemCheckState(aff_taches.SelectedIndex) == CheckState.Checked)
+                                {
+                                    selected.etat = false;
+                                    int size_list = aff_taches.Items.Count;
+                                    int nbr_checked_list = aff_taches.CheckedItems.Count;
+                                    nb_elem.Text = nbr_checked_list - 1 + " / " + size_list;
+                                }
+                                else
+                                {
+                                    selected.etat = true;
+                                    int size_list = aff_taches.Items.Count;
+                                    int nbr_checked_list = aff_taches.CheckedItems.Count;
+                                    nb_elem.Text = nbr_checked_list + 1 + " / " + size_list;
+                                }
+                            }
+                            i++;
+                        }
+                    }
+                    entities.SaveChanges();
+                }
             }
         }
 
@@ -351,6 +472,9 @@ namespace Mediametrie
                     aff_taches.Items.Add(item.nom);
                 }
             }
+            int size_list = aff_taches.Items.Count;
+            int nbr_checked_list = aff_taches.CheckedItems.Count;
+            nb_elem.Text = nbr_checked_list + " / " + size_list;
         }
 
         private void btn_add_cont_Click(object sender, EventArgs e)
