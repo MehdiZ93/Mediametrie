@@ -312,14 +312,22 @@ namespace Mediametrie
                     foreach (var item in listCont)
                     {
                         if (i == list_cont.SelectedIndex)
-                        {
                             foreach (var task in entities.Taches)
-                            {
                                 if (task.id_container == item.Id)
                                     entities.Taches.Remove(task);
-                            }
+                        i++;
+                    }
+                    entities.SaveChanges();
+                }
+                i = 0;
+                using (var entities = new Database1Entities())
+                {
+                    var listCont = from c in entities.Containers
+                                   select c;
+                    foreach (var item in listCont)
+                    {
+                        if (i == list_cont.SelectedIndex)
                             entities.Containers.Remove(item);
-                        }
                         i++;
                     }
                     entities.SaveChanges();
